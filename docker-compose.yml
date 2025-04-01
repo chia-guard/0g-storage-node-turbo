@@ -4,6 +4,7 @@ services:
   node:
     image: ghcr.io/lushdog/0g:latest
     network_mode: 'host'
+    restart: unless-stopped
     volumes:
       - ./log:/app/0g-storage-node/run/log
       - ./db:/app/0g-storage-node/run/db
