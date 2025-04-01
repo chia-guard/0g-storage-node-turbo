@@ -6,6 +6,7 @@ services:
     network_mode: 'host'
     volumes:
       - ./log:/app/0g-storage-node/run/log
+      - ./db:/app/0g-storage-node/run/db
     environment:
       - RPC=${RPC}
       - PRIVATE_KEY=${PRIVATE_KEY}
