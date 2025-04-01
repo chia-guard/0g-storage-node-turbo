@@ -1,0 +1,12 @@
+name: 0g-storage
+
+services:
+  node:
+    image: ghcr.io/lushdog/0g:latest
+    network_mode: 'host'
+    volumes:
+      - ./run:/usr/src/app/0g-storage-node/run
+    environment:
+      - RPC=${RPC}
+      - PRIVATE_KEY=${PRIVATE_KEY}
+      
