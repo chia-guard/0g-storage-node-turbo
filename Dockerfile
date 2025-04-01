@@ -2,7 +2,7 @@ FROM rust:bullseye AS builder
 
 RUN apt update && apt install -y wget clang cmake build-essential pkg-config libssl-dev git
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 RUN git clone https://github.com/0glabs/0g-storage-node.git && \
     cd 0g-storage-node && \
@@ -13,14 +13,13 @@ FROM debian:bullseye-slim
 
 RUN apt update && apt install -y ca-certificates && rm -rf /var/lib/apt/lists/*
 
-COPY --from=builder /usr/src/app/0g-storage-node /usr/src/app/0g-storage-node
+COPY --from=builder /app/0g-storage-node /app/0g-storage-node
 
-# 设置工作目录
-WORKDIR /usr/src/app/0g-storage-node/run
+WORKDIR /app/0g-storage-node/run
 
-COPY entrypoint.sh entrypoint.sh
+COPY entrypoint.sh /app/0g-storage-node/run/entrypoint.sh
 
-RUN chmod +x entrypoint.sh
+RUN chmod +x /app/0g-storage-node/run/entrypoint.sh
 
 # 设置默认命令
 ENTRYPOINT ["./entrypoint.sh"]
