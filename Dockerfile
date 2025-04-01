@@ -13,7 +13,8 @@ FROM debian:bullseye-slim
 
 RUN apt update && apt install -y ca-certificates && rm -rf /var/lib/apt/lists/*
 
-COPY --from=builder /app/0g-storage-node /app/0g-storage-node
+COPY --from=builder /app/0g-storage-node/run /app/0g-storage-node/run
+COPY --from=builder /app/0g-storage-node/target/release/zgs_node /app/0g-storage-node/target/release/zgs_node
 
 WORKDIR /app/0g-storage-node/run
 
