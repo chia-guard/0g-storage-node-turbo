@@ -6,7 +6,7 @@ WORKDIR /app
 
 RUN git clone https://github.com/0glabs/0g-storage-node.git && \
     cd 0g-storage-node && \
-    git -c advice.detachedHead=false checkout $(git describe --tags $(git rev-list --tags --max-count=1)) && \
+    git checkout @peter/update-docker && \
     cargo build --release
 
 FROM debian:bullseye-slim
